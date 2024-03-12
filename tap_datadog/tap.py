@@ -22,29 +22,24 @@ class Tapdatadog(Tap):
             th.StringType,
             required=True,
             secret=True,  # Flag config as protected.
-            description="The API Key",
+            description="The API Key, generated in Datadog UI and stored in 1Password",
         ),
         th.Property(
             "application_key",
             th.StringType,
             required=True,
             secret=True,  # Flag config as protected.
-            description="The Application Key",
+            description="The Application Key, generated in Datadog UI and stored in 1Password",
         ),
         th.Property(
             "slos",
             th.ArrayType(th.ObjectType(
                 th.Property("name", th.StringType, description="The name of the SLO"),
-                th.Property("id", th.StringType, description="The id of the SLO")
+                th.Property("id", th.StringType, description="The id of the SLO"),
             )),
             required=True,
-            description="SLO IDs to replicate",
+            description="SLOs to replicate",
         ),
-        th.Property(
-            "start_date",
-            th.DateTimeType,
-            description="The earliest record date to sync",
-        )
     ).to_dict()
 
     def discover_streams(self) -> list[streams.datadogStream]:

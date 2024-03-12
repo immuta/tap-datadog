@@ -4,10 +4,6 @@
 
 Built with the [Meltano Tap SDK](https://sdk.meltano.com) for Singer Taps.
 
-<!--
-
-Developer TODO: Update the below as needed to correctly describe the install procedure. For instance, if you do not have a PyPi repo, or if you want users to directly install from your git repo, you can modify this step as appropriate.
-
 ## Installation
 
 Install from PyPi:
@@ -19,24 +15,20 @@ pipx install tap-datadog
 Install from GitHub:
 
 ```bash
-pipx install git+https://github.com/ORG_NAME/tap-datadog.git@main
+pipx install git+https://github.com/immuta/tap-datadog.git@main
 ```
-
--->
 
 ## Configuration
 
 ### Accepted Config Options
 
-<!--
-Developer TODO: Provide a list of config options accepted by the tap.
+## Settings
 
-This section can be created by copy-pasting the CLI output from:
-
-```
-tap-datadog --about --format=markdown
-```
--->
+| Setting | Required | Default | Description |
+|:--------|:--------:|:-------:|:------------|
+| api_key | True     | None    | The API Key, generated in Datadog UI and stored in 1Password |
+| application_key | True     | None    | The Application Key, generated in Datadog UI and stored in 1Password |
+| slos | True     | None    | SLOs to replicate |
 
 A full list of supported settings and capabilities for this
 tap is available by running:
@@ -53,9 +45,7 @@ environment variable is set either in the terminal context or in the `.env` file
 
 ### Source Authentication and Authorization
 
-<!--
-Developer TODO: If your tap requires special access on the source system, or any special authentication requirements, provide those here.
--->
+An API Key and Application Key from Datadog must be provided in the `config.json`.
 
 ## Usage
 
@@ -99,12 +89,6 @@ poetry run tap-datadog --help
 
 _**Note:** This tap will work in any Singer environment and does not require Meltano.
 Examples here are for convenience and to streamline end-to-end orchestration scenarios._
-
-<!--
-Developer TODO:
-Your project comes with a custom `meltano.yml` project file already created. Open the `meltano.yml` and follow any "TODO" items listed in
-the file.
--->
 
 Next, install Meltano (if you haven't already) and any needed plugins:
 
