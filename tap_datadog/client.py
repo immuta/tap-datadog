@@ -91,3 +91,11 @@ class DatadogStream(RESTStream):
         """           
         data = response.json()["data"]
         yield from extract_jsonpath(self.records_jsonpath, input=data)
+    
+    def post_process(
+        self,
+        row: dict,
+        context: dict | None = None,  # noqa: ARG002
+    ) -> dict | None:
+        row["slo_id"] = self.slo.get("id")
+        return row
