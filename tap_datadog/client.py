@@ -46,8 +46,8 @@ class DatadogStream(RESTStream):
         if "user_agent" in self.config:
             headers["User-Agent"] = self.config.get("user_agent")
         # If not using an authenticator, you may also provide inline auth headers:
-        headers["DD-API-KEY"] = self.config.get("api_key", "")  # noqa: ERA001
-        headers["DD-APPLICATION-KEY"] = self.config.get("application_key", "")  # noqa: ERA001
+        headers["DD-API-KEY"] = self.config.get("api_key", "").strip()  # noqa: ERA001
+        headers["DD-APPLICATION-KEY"] = self.config.get("application_key", "").strip()  # noqa: ERA001
         return headers
 
     def get_url(self, context: dict | None) -> str:
