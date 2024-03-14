@@ -21,7 +21,8 @@ class SLOStream(DatadogStream):
 
     path = "slo/{id}/history"
     primary_keys: t.ClassVar[list[str]] = ["slo_id"]
-    replication_key = None
+    replication_key = "to_ts"
+    is_sorted = True
     # Optionally, you may also use `schema_filepath` in place of `schema`:
     # schema_filepath = SCHEMAS_DIR / "users.json"  # noqa: ERA001
     schema_filepath = SCHEMAS_DIR / "slo_history.json"

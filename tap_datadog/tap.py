@@ -40,6 +40,27 @@ class Tapdatadog(Tap):
             required=True,
             description="SLOs to replicate",
         ),
+        th.Property(
+            "from_ts",
+            th.NumberType,
+            required=False,
+            description="The Unix timestamp to start the extract from, by default now - 1 day",
+        ),
+        th.Property(
+            "to_ts",
+            th.NumberType,
+            required=False,
+            description="The Unix timestamp to start the extract to, by default now",
+        ),
+        th.Property(
+            "slos",
+            th.ArrayType(th.ObjectType(
+                th.Property("name", th.StringType, description="The name of the SLO"),
+                th.Property("id", th.StringType, description="The id of the SLO"),
+            )),
+            required=True,
+            description="SLOs to replicate",
+        ),
     ).to_dict()
 
     def discover_streams(self) -> list[streams.datadogStream]:

@@ -74,10 +74,10 @@ class DatadogStream(RESTStream):
         if self.replication_key:
             params["sort"] = "asc"
             params["order_by"] = self.replication_key
-        to_ts = datetime.now()
-        from_ts = datetime.now() - timedelta(days=1)
-        params["from_ts"] = int(from_ts.timestamp())
-        params["to_ts"] = int(to_ts.timestamp())
+        to_ts = self.config.get("to_ts") if self.config.get("to_ts") != None else datetime.now().timestamp()
+        from_ts = self.config.get("from_ts") if self.config.get("from_ts") != None else (datetime.now() - timedelta(days=1)).timestamp()
+        params["from_ts"] = int(from_ts)
+        params["to_ts"] = int(to_ts)
         return params
 
     def parse_response(self, response: requests.Response) -> Iterable[dict]:
